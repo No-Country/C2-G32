@@ -50,8 +50,7 @@ const Formulario = () => {
               valores.confirmacion
             )
           ) {
-            errores.confirmacion =
-              "Por favor ingresa una contraseña";
+            errores.confirmacion = "Por favor ingresa una contraseña";
           }
           if (!valores.correo) {
             // validacion correo
@@ -69,7 +68,7 @@ const Formulario = () => {
         }}
         onSubmit={(valores, { resetForm }) => {
           resetForm();
-          
+
           setFormularioEnviado(true);
           setTimeout(() => setFormularioEnviado(false), 4000);
         }}

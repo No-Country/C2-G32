@@ -1,14 +1,14 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import Formulario from './components/Formulario';
+import Form from './components/Form'
 
 
 
 ReactDOM.render(
   <React.StrictMode>
     <div className="contenedor">
-      <Formulario/>
+      <Form/>
     </div>
   </React.StrictMode>,
   document.getElementById("root")
