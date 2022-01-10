@@ -27,21 +27,34 @@ const Formulario = () => {
           if (!valores.apellido) {
             errores.apellido = "Por favor ingresa un apellido";
           } else if (!/^[a-zA-ZÀ-ÿ\s]{1,40}$/.test(valores.apellido)) {
-            errores.apellido = "El apellido solo puede contener letras y espacios";
+            errores.apellido =
+              "El apellido solo puede contener letras y espacios";
           }
           //validacion contraseña
-           if (!valores.contraseña) {
-             errores.contraseña = "Por favor ingresa una contraseña";
-           } else if (
-             !/^(?=\w*\d)(?=\w*[A-Z])(?=\w*[a-z])\S{8,16}$/.test(
-               valores.contraseña
-             )
-           ) {
-             errores.contraseña =
-               "La contraseña debe tener al entre 8 y 16 caracteres, al menos un dígito, al menos una minúscula y al menos una mayúscula. Puede tener otros símbolos.";
-           }
-          // validacion correo
+          if (!valores.contraseña) {
+            errores.contraseña = "Por favor ingresa una contraseña";
+          } else if (
+            !/^(?=\w*\d)(?=\w*[A-Z])(?=\w*[a-z])\S{8,16}$/.test(
+              valores.contraseña
+            )
+          ) {
+            errores.contraseña =
+              "La contraseña debe tener al entre 8 y 16 caracteres, al menos un dígito, al menos una minúscula y al menos una mayúscula. Puede tener otros símbolos.";
+          }
+          //validacion confirmación
+          if (!valores.contraseña == valores.confirmacion) {
+            errores.confirmacion =
+              "Por favor ambas contraseñas deben ser iguales";
+          } else if (
+            !/^(?=\w*\d)(?=\w*[A-Z])(?=\w*[a-z])\S{8,16}$/.test(
+              valores.confirmacion
+            )
+          ) {
+            errores.confirmacion =
+              "Por favor ingresa una contraseña";
+          }
           if (!valores.correo) {
+            // validacion correo
             errores.correo = "Por favor ingresa un correo electronico";
           } else if (
             !/^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/.test(
@@ -51,16 +64,14 @@ const Formulario = () => {
             errores.correo =
               "El correo solo puede contener letras, numeros, puntos, caracteres especiales, guiones y guion bajo.";
           }
-          
-         
 
           return errores;
         }}
         onSubmit={(valores, { resetForm }) => {
           resetForm();
-          console.log("Formulario enviado");
+          
           setFormularioEnviado(true);
-          setTimeout(() => setFormularioEnviado(false), 5000);
+          setTimeout(() => setFormularioEnviado(false), 4000);
         }}
       >
         {({ errors }) => (
@@ -130,76 +141,12 @@ const Formulario = () => {
               />
             </div>
 
-            {/* <div>
-              <Field name="pais" as="select">
-                <option value="argentina">Argentina</option>
-                <option value="brasil">Brasil</option>
-                <option value="peru">Peru</option>
-              </Field>
-            </div>
-            <div>
-              <label>
-                <Field type="radio" name="sexo" value="hombre" />
-                Hombre
-              </label>
-              <label>
-                <Field type="radio" name="sexo" value="mujer" />
-                Mujer
-              </label>
-            </div>
-            <div>
-              <Field name="mensaje" as="textarea" placeholder="Mensaje" />
-            </div> */}
             <button type="submit">Enviar</button>
             {formularioEnviado && (
               <p className="exito">Formulario enviado con exito!</p>
             )}
           </Form>
         )}
-        {/* {({
-          values,
-          errors,
-          touched,
-          handleSubmit,
-          handleChange,
-          handleBlur,
-        }) => (
-          <form className="formulario" onSubmit={handleSubmit}>
-            <div>
-              <label htmlFor="nombre">Nombre</label>
-              <input
-                type="text"
-                name="nombre"
-                placeholder="Nombre"
-                id="nombre"
-                value={values.nombre}
-                onChange={handleChange}
-                onBlur={handleBlur}
-              />
-              {touched.nombre && errors.nombre && (
-                <div className="error">{errors.nombre}</div>
-              )}
-            </div>
-            <div>
-              <label htmlFor="correo">Correo</label>
-              <input
-                type="text"
-                name="correo"
-                placeholder="correo@correo.com"
-                id="correo"
-                value={values.correo}
-                onChange={handleChange}
-                onBlur={handleBlur}
-              />
-              {touched.correo && errors.correo && (
-                <div className="error">{errors.correo}</div>
-              )}
-            </div>
-
-            <button type="submit">Enviar</button>
-            {formularioEnviado &&<p className="exito">Formulario enviado con exito!</p>}
-          </form>
-        )} */}
       </Formik>
     </>
   );
