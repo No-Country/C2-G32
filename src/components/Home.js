@@ -1,11 +1,13 @@
-import  Navbar  from "./Navbar"
+import  NavbarComponent  from "./Navbar"
+import CardRecipe from "./CardRecipe"
 
 function Home () {
   return (
     <>
-        <h1>Home</h1>
         
-        <Navbar />
+        
+        <NavbarComponent className="navbar"/>
+        <CardRecipe />
         
     </>
   )
