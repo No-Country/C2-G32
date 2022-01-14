@@ -26,6 +26,7 @@ const NavbarComponent = () => {
                     <NavDropdown.Item href="#action/3.3">GitHub Robert Linares</NavDropdown.Item>
                     <NavDropdown.Item href="#action/3.4">GitHub Erika Sandoval</NavDropdown.Item>
                     </NavDropdown>
+                    <Nav.Link href="#home">Recetas mas votadas</Nav.Link>
                 </Nav>
                 </Navbar.Collapse>
                 <Navbar.Collapse className="justify-content-end">
