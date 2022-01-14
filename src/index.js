@@ -3,11 +3,17 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import App from './App';
+// import Form from './components/Form'
+
+
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    
+      <App />
+    
   </React.StrictMode>,
-  document.getElementById('root')
+  document.getElementById("root")
 );
+
 
