@@ -1,7 +1,11 @@
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import { Navbar, Container, NavDropdown, Nav, Button } from "react-bootstrap";
 
 const NavbarComponent = () => {
+  const navigate = useNavigate();
+  const handleClick = () => {
+    navigate("/");
+  };
   return (
     <>
       <Navbar bg="light" expand="lg">
@@ -12,7 +16,9 @@ const NavbarComponent = () => {
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="me-auto">
-              <Nav.Link href="#home">Home</Nav.Link>
+              <Nav.Link onClick={handleClick}>
+                Home
+              </Nav.Link>
               <NavDropdown title="Recetas" id="basic-nav-dropdown">
                 <NavDropdown.Item href="#action/3.1">
                   Recetas Veganas
