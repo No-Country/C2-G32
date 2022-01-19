@@ -1,11 +1,12 @@
 import React, { useState } from "react";
 import { Formik, Form, Field, ErrorMessage } from "formik";
-
+import Navbar from './Navbar'
 const Formulario = () => {
   const [formularioEnviado, setFormularioEnviado] = useState(false);
 
   return (
     <>
+    <Navbar/>
       <Formik
         initialValues={{
           nombre: "",

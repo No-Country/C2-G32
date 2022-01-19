@@ -16,7 +16,13 @@ h4{
 .navbar{
   margin-bottom: 5rem;
 }
-
+.link{
+  color:#fff;
+}
+.link:hover{
+  color:#fff;
+  text-decoration: none;
+}
 .logo{
   font-family: 'Open Sans',
   sans-serif;

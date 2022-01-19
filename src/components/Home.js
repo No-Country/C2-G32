@@ -10,8 +10,7 @@ function Home () {
         
         <NavbarComponent className="navbar"/>
         <div className="container mb-5">
-        <h4>Registrate</h4>
-        <Form/>
+        
         </div>
         <CardRecipe />
         <Footer/>
