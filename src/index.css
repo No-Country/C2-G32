@@ -32,7 +32,9 @@ h4{
   cursive;
   font-size: 3rem;
 }
-
+.card{
+  margin-top: 20px;
+}
 .cardBody{
   display: flex;
   flex-direction: column;
@@ -56,8 +58,8 @@ background-image: linear-gradient(180deg, #f5a4bb 0%, #B5FFFC 77%);
   margin-bottom: 2rem;
 }
 .formulario {
-	min-width: 600px;
-	margin-top: 50px;
+	min-width: 400px;
+	margin-top: 70px;
 background: whitesmoke;
 	border-radius: 5px;
 	padding: 20px;

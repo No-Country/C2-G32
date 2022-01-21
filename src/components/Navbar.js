@@ -8,7 +8,7 @@ const NavbarComponent = () => {
   };
   return (
     <>
-      <Navbar bg="light" expand="lg">
+      <Navbar bg="light" expand="lg" fixed="top" className="mb-3">
         <Container>
           <Navbar.Brand className="logo" href="#home">
             Recetas faciles!
