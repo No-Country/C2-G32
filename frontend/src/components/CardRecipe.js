@@ -112,7 +112,7 @@ import { Row, Col, Card, Container, Button, Form } from 'react-bootstrap';
 
 ]*/
 
-const CardRecipe = () => {
+const CardRecipe = ( type ) => {
 
     //const [item, setItem]  = useState([]);
     const [recipes, setRecipes] = useState([]);

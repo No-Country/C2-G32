@@ -14,6 +14,7 @@ const Formulario = () => {
           contraseña: "",
           confirmacion: "",
           correo: "",
+          username: "",
         }}
         validate={(valores) => {
           let errores = {};
@@ -31,6 +32,15 @@ const Formulario = () => {
             errores.apellido =
               "El apellido solo puede contener letras y espacios";
           }
+
+          //validacion username
+          if (!valores.username) {
+            errores.apellido = "Por favor ingresa un username";
+          } else if (!/^[a-zA-ZÀ-ÿ\s]{1,40}$/.test(valores.username)) {
+            errores.username =
+              "El username solo puede contener letras y espacios";
+          }
+
           //validacion contraseña
           if (!valores.contraseña) {
             errores.contraseña = "Por favor ingresa una contraseña";
@@ -68,6 +78,23 @@ const Formulario = () => {
           return errores;
         }}
         onSubmit={(valores, { resetForm }) => {
+          let values = {
+            "first_name": valores.nombre,
+            "last_name": valores.apellido,
+            "username": valores.username,
+            "email": valores.correo,
+            "password": valores.contraseña
+           };
+
+          let json_values = JSON.stringify(values)
+          console.log(json_values)
+          fetch('http://localhost:8000/api/v1/users', {
+            mode: 'no-cors',
+            method: 'post',
+            headers: {'Content-Type':'application/json','Access-Control-Allow-Origin': '*'},
+            body: json_values
+           });
+
           resetForm();
 
           setFormularioEnviado(true);
@@ -100,6 +127,21 @@ const Formulario = () => {
               <ErrorMessage
                 name="apellido"
                 component={() => <div className="error">{errors.apellido}</div>}
+              />
+            </div>
+            <div>
+              <label htmlFor="username">Username</label>
+              <Field
+                type="text"
+                id="username"
+                name="username"
+                placeholder="username"
+              />
+              <ErrorMessage
+                name="username"
+                component={() => (
+                  <div className="error">{errors.username}</div>
+                )}
               />
             </div>
             <div>
