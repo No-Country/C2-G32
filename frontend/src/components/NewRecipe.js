@@ -138,29 +138,28 @@ const NewRecipe = () => {
             
             <div >
                 <label>Ingredientes</label>
-                <div className="form-row">
-                  <div className="mb-4 col-11">
+                <div className="input-group">
                     <Field
                       type="text"
                       name="ingredients"
                       placeholder="Ingredientes"
                       id="ingredients"
-                      className="input-group"
+                      className="form-control"
                       value={ingredientes}
                       onChange={ handleIngredientsChange }
                     />
-                  </div>
-                  <div className="mb-4 col-1">
-                    <button className="btn btn-outline-info" 
+
+                  <span class="input-group-btn">
+                    <button className="btn btn-primary ml-2" role="button" 
                       id="enter" 
                       type="button"
                       onClick={ handleIngredient }>
-                        Add
+                        Agregar
                     </button>
-                  </div>
+                    </span>
                 </div>
 
-                <div className="col-12 mb-4">
+                <div className="col-8 mb-4 mt-2">
                   <ul className="list-group">
                       {iList.map((it, index) => {
                       return (
@@ -173,29 +172,27 @@ const NewRecipe = () => {
 
             <div >
                 <label>Pasos a seguir!</label>
-                <div className="form-row">
-                  <div className="mb-4 col-11">
+                <div className="input-group">
                     <Field
                       type="text"
                       name="descriptions"
                       placeholder="Descripciones"
                       id="descriptions"
-                      className="input-group"
+                      className="form-control"
                       value={descripciones}
                       onChange={ handleDescriptionChange }
                     />
-                  </div>
-                  <div className="mb-4 col-1">
-                    <button className="btn btn-outline-info" 
+                  <span class="input-group-btn">
+                    <button className="btn btn-primary ml-2" role="button" 
                       id="enter" 
                       type="button"
                       onClick={ handleDescription }>
-                        Add
+                        Agregar
                     </button>
-                  </div>
+                  </span>
                 </div>
 
-                <div className="col-12 mb-4">
+                <div className="col-8 mb-4 mt-2">
                   <ul className="list-group">
                     
                       {dList.map((it, index) => {

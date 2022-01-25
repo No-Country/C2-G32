@@ -102,92 +102,96 @@ const Formulario = () => {
         }}
       >
         {({ errors }) => (
-          <Form className="formulario">
-            <div>
-              <label htmlFor="nombre">Nombre</label>
-              <Field
-                type="text"
-                id="nombre"
-                name="nombre"
-                placeholder="Nombre"
-              />
-              <ErrorMessage
-                name="nombre"
-                component={() => <div className="error">{errors.nombre}</div>}
-              />
-            </div>
-            <div>
-              <label htmlFor="apellido">Apellido</label>
-              <Field
-                type="text"
-                id="apellido"
-                name="apellido"
-                placeholder="Apellido"
-              />
-              <ErrorMessage
-                name="apellido"
-                component={() => <div className="error">{errors.apellido}</div>}
-              />
-            </div>
-            <div>
-              <label htmlFor="username">Username</label>
-              <Field
-                type="text"
-                id="username"
-                name="username"
-                placeholder="username"
-              />
-              <ErrorMessage
-                name="username"
-                component={() => (
-                  <div className="error">{errors.username}</div>
-                )}
-              />
-            </div>
-            <div>
-              <label htmlFor="contraseña">Contraseña</label>
-              <Field
-                type="password"
-                id="contraseña"
-                name="contraseña"
-                placeholder="Contraseña"
-              />
-              <ErrorMessage
-                name="contraseña"
-                component={() => (
-                  <div className="error">{errors.contraseña}</div>
-                )}
-              />
-            </div>
-            <div>
-              <label htmlFor="confirmacion"> Verificar Contraseña</label>
-              <Field type="password" id="confirmacion" name="confirmacion" />
-              <ErrorMessage
-                name="contraseña"
-                component={() => (
-                  <div className="error">{errors.confirmacion}</div>
-                )}
-              />
-            </div>
-            <div>
-              <label htmlFor="correo">Correo</label>
-              <Field
-                type="text"
-                name="correo"
-                placeholder="correo@correo.com"
-                id="correo"
-              />
-              <ErrorMessage
-                name="correo"
-                component={() => <div className="error">{errors.correo}</div>}
-              />
-            </div>
+          <div className="container">
+            <div className="col-12" style={{ paddingBottom: "50px" }}>
+              <Form className="formulario">
+              <div>
+                <label htmlFor="nombre">Nombre</label>
+                <Field
+                  type="text"
+                  id="nombre"
+                  name="nombre"
+                  placeholder="Nombre"
+                />
+                <ErrorMessage
+                  name="nombre"
+                  component={() => <div className="error">{errors.nombre}</div>}
+                />
+              </div>
+              <div>
+                <label htmlFor="apellido">Apellido</label>
+                <Field
+                  type="text"
+                  id="apellido"
+                  name="apellido"
+                  placeholder="Apellido"
+                />
+                <ErrorMessage
+                  name="apellido"
+                  component={() => <div className="error">{errors.apellido}</div>}
+                />
+              </div>
+              <div>
+                <label htmlFor="username">Username</label>
+                <Field
+                  type="text"
+                  id="username"
+                  name="username"
+                  placeholder="username"
+                />
+                <ErrorMessage
+                  name="username"
+                  component={() => (
+                    <div className="error">{errors.username}</div>
+                  )}
+                />
+              </div>
+              <div>
+                <label htmlFor="contraseña">Contraseña</label>
+                <Field
+                  type="password"
+                  id="contraseña"
+                  name="contraseña"
+                  placeholder="Contraseña"
+                />
+                <ErrorMessage
+                  name="contraseña"
+                  component={() => (
+                    <div className="error">{errors.contraseña}</div>
+                  )}
+                />
+              </div>
+              <div>
+                <label htmlFor="confirmacion"> Verificar Contraseña</label>
+                <Field type="password" id="confirmacion" name="confirmacion" />
+                <ErrorMessage
+                  name="contraseña"
+                  component={() => (
+                    <div className="error">{errors.confirmacion}</div>
+                  )}
+                />
+              </div>
+              <div>
+                <label htmlFor="correo">Correo</label>
+                <Field
+                  type="text"
+                  name="correo"
+                  placeholder="correo@correo.com"
+                  id="correo"
+                />
+                <ErrorMessage
+                  name="correo"
+                  component={() => <div className="error">{errors.correo}</div>}
+                />
+              </div>
 
-            <button type="submit">Enviar</button>
-            {formularioEnviado && (
-              <p className="exito">Formulario enviado con exito!</p>
-            )}
-          </Form>
+              <button type="submit">Enviar</button>
+              {formularioEnviado && (
+                <p className="exito">Formulario enviado con exito!</p>
+              )}
+            </Form>
+          </div>
+          </div>
         )}
       </Formik>
     </>
