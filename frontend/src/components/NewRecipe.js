@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Formik, Form, Field, ErrorMessage } from "formik";
+import { Formik, Form, Field } from "formik";
 import Navbar from './Navbar'
 const NewRecipe = () => {
   const [formularioEnviado, setFormularioEnviado] = useState(false);
@@ -150,7 +150,7 @@ const NewRecipe = () => {
                     />
 
                   <span class="input-group-btn">
-                    <button className="btn btn-primary ml-2" role="button" 
+                    <button className="btn btn-primary ml-2"
                       id="enter" 
                       type="button"
                       onClick={ handleIngredient }>
@@ -183,7 +183,7 @@ const NewRecipe = () => {
                       onChange={ handleDescriptionChange }
                     />
                   <span class="input-group-btn">
-                    <button className="btn btn-primary ml-2" role="button" 
+                    <button className="btn btn-primary ml-2" 
                       id="enter" 
                       type="button"
                       onClick={ handleDescription }>

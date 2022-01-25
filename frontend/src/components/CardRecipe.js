@@ -1,11 +1,25 @@
 
 import { useEffect, useState } from 'react';
-import { Row, Col, Card, Container, Button, Form } from 'react-bootstrap';
+import { Row, Col, Card, Container, Button, Form, Modal } from 'react-bootstrap';
 import { Navigate } from 'react-router-dom';
+
 
 const CardRecipe = ( props ) => {
 
-    //const [item, setItem]  = useState([]);
+    const [show, setShow] = useState(false);
+
+    const [recipe, setRecipe] = useState([]);
+
+    const handleClose = () => setShow(false);
+    
+    const handleShow = (e) => {
+        //console.log(recipe_id)
+        getOneRecipes(parseInt(e.currentTarget.id));
+        setShow(true);
+    }
+    
+
+
     const [recipes, setRecipes] = useState([]);
     var json;
     
@@ -34,6 +48,22 @@ const CardRecipe = ( props ) => {
             json=JSON.parse(data)['recipe']; //convert JSON to array javascript
             console.log(json);
             setRecipes(json);
+          });
+    }
+
+    function getOneRecipes(id) {
+        fetch('https://nocountry-g32app.herokuapp.com/api/v1/posts/'+id)
+          .then(response => {
+            return response.text();
+          })
+          .then(data => {
+            if(data.includes('"recipe":null')){
+                console.log('NO DATA');
+                return (<Navigate to="/home" />);
+            }
+            json=JSON.parse(data)['recipe']; //convert JSON to array javascript
+            console.log(json);
+            setRecipe(json);
           });
     }
 
@@ -69,7 +99,7 @@ const CardRecipe = ( props ) => {
                                 
                                     <Card.Title>{it.recipe_name}</Card.Title>
                                     
-                                    <Button className="mb-1"variant="primary" size="sm" active>
+                                    <Button onClick={handleShow} className="mb-1"variant="primary" size="sm" active id={it.id}>
                                     Ver Receta
                                     </Button>{''}
                                     <Button className="mb-1"variant="primary" size="sm" active id={it.id}
@@ -95,6 +125,30 @@ const CardRecipe = ( props ) => {
             
             </Row>
             </Container>
+
+            <Modal show={show} onHide={handleClose}
+            animation={true}
+            size="md">
+                <Modal.Header closeButton>
+                        <Modal.Title>{recipe.recipe_name}</Modal.Title>
+                </Modal.Header>
+
+                Ingredientes:
+                <Modal.Body>
+
+                    
+                    {recipe.ingredients}
+                </Modal.Body>
+
+                    Descripcion:
+                <Modal.Body>
+                    {recipe.description}
+                </Modal.Body>
+
+                <Modal.Footer>
+                    <button type="button" className="btn btn-secondary" onClick={handleClose}>Close</button>
+                </Modal.Footer>
+            </Modal>
         
         </>
 
