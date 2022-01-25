@@ -1,5 +1,13 @@
 import { useEffect, useState } from "react";
-import { Row, Col, Card, Container, Button, Form } from "react-bootstrap";
+import {
+  Row,
+  Col,
+  Card,
+  Container,
+  Button,
+  Form,
+  Modal,
+} from "react-bootstrap";
 
 const recipes = [
   {
@@ -123,6 +131,10 @@ const recipes = [
 const CardRecipe = () => {
   const [item, setItem] = useState([]);
   const [loading, setLoading] = useState(false);
+  const [show, setShow] = useState(false);
+
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
   console.log(item);
 
   const getRecipes = () => {
@@ -164,9 +176,62 @@ const CardRecipe = () => {
 
                     <Card.Title>{it.name}</Card.Title>
 
-                    <Button className="mb-1" variant="primary" size="sm" active>
+                    <Button
+                      className="mb-1"
+                      variant="primary"
+                      size="sm"
+                      active
+                      onClick={handleShow}
+                    >
                       Ver Receta
                     </Button>
+                    <Modal
+                      backdrop="static"
+                      keyboard={false}
+                      show={show}
+                      onHide={handleClose}
+                      animation={true}
+                      size="md"
+                    >
+                      <Modal.Header closeButton>
+                        <Modal.Title>{it.name}</Modal.Title>
+                      </Modal.Header>
+
+                      <Modal.Body>
+                        <img src={it.thumbnail}></img>
+                        <p>
+                          Ingredientes: {it.ingredientes.ingrediente1},{" "}
+                          {it.ingredientes.ingrediente2},{" "}
+                          {it.ingredientes.ingrediente3},{" "}
+                          {it.ingredientes.ingrediente4},{" "}
+                          {it.ingredientes.ingrediente5},{" "}
+                          {it.ingredientes.ingrediente6},{" "}
+                          {it.ingredientes.ingrediente7},{" "}
+                          {it.ingredientes.ingrediente8}.
+                        </p>
+                        <p>
+                          Preparación: {it.descripcion.proced1}
+                          {it.descripcion.proced2} {it.descripcion.proced3}
+                        </p>
+                        <Col
+                        className="pl0">
+                          <Form.Control
+                            size="md"
+                            type="text"
+                            placeholder="Escribir comentario"
+                          />
+                        </Col>
+                      </Modal.Body>
+
+                      <Modal.Footer>
+                        <Button variant="secondary" onClick={handleClose}>
+                          Guardar
+                        </Button>
+                        <Button variant="secondary" onClick={handleClose}>
+                          Close
+                        </Button>
+                      </Modal.Footer>
+                    </Modal>
                     {""}
                     <Col>
                       <Form.Control

@@ -130,7 +130,15 @@ background: whitesmoke;
 .formulario input[type="radio"] {
 	width: auto;
 }
-
+.modal-body{
+  padding: 0.3rem;
+}
+.modal-body img{
+  width: 100%;
+}
+.modal-body p{
+  margin-bottom: 0;
+}
 
 @media screen and (max-width:1280px){
  
