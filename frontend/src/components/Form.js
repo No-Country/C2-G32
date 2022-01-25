@@ -53,7 +53,7 @@ const Formulario = () => {
               "La contraseña debe tener al entre 8 y 16 caracteres, al menos un dígito, al menos una minúscula y al menos una mayúscula. Puede tener otros símbolos.";
           }
           //validacion confirmación
-          if (!valores.contraseña == valores.confirmacion) {
+          if (!valores.contraseña === valores.confirmacion) {
             errores.confirmacion =
               "Por favor ambas contraseñas deben ser iguales";
           } else if (

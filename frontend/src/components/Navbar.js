@@ -1,35 +1,31 @@
-import { NavLink, useNavigate } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import { Navbar, Container, NavDropdown, Nav, Button } from "react-bootstrap";
 
 const NavbarComponent = () => {
-  const navigate = useNavigate();
-  const handleClick = () => {
-    navigate("/");
-  };
   return (
     <>
       <Navbar bg="light" expand="lg">
         <Container>
-          <Navbar.Brand className="logo" href="#home">
+          <Navbar.Brand className="logo" href="/home">
             Recetas faciles!
           </Navbar.Brand>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="me-auto">
-              <Nav.Link onClick={handleClick}>
+              <Nav.Link href="/home">
                 Home
               </Nav.Link>
               <NavDropdown title="Recetas" id="basic-nav-dropdown">
-                <NavDropdown.Item href="#action/3.1">
+                <NavDropdown.Item href="/Vegana">
                   Recetas Veganas
                 </NavDropdown.Item>
-                <NavDropdown.Item href="#action/3.2">
+                <NavDropdown.Item href="/Pasta">
                   Recetas Pasta
                 </NavDropdown.Item>
-                <NavDropdown.Item href="#action/3.3">
+                <NavDropdown.Item href="/Carnes">
                   Recetas con Carne
                 </NavDropdown.Item>
-                <NavDropdown.Item href="#action/3.4">
+                <NavDropdown.Item href="/Gourmet">
                   Recetas Gourmet
                 </NavDropdown.Item>
               </NavDropdown>
@@ -47,7 +43,14 @@ const NavbarComponent = () => {
                   GitHub Erika Sandoval
                 </NavDropdown.Item>
               </NavDropdown>
-              <Nav.Link href="#home">Recetas mas votadas</Nav.Link>
+              <Nav.Link href="/Rank">Recetas mas votadas</Nav.Link>
+
+              <Button variant="primary" size="sm" active>
+                <NavLink to="/addrecipe" className="link">
+                  Nueva!
+                </NavLink>
+              </Button>{" "}
+
             </Nav>
           </Navbar.Collapse>
           <Navbar.Collapse className="justify-content-end">
