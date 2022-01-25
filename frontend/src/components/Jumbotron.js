@@ -3,9 +3,9 @@ const Jumbotron = () => {
     <div>
      <div className="jumbotron">
       <h1 className="display-4">Hello, world!</h1>
-      <p className="lead">This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content or information.</p>
+      <p className="lead">Sitio web que permite clasificar por distintas categorías distintas comidas. Se podrá publicar, comentar y votar </p>
       <hr className="my-4"></hr>
-      <p>It uses utility classes for typography and spacing to space content out within the larger container.</p>
+      <p>El sitio es realizado por el c2-32-t de NO-COUNTRY!</p>
       </div>
     </div>
   );
