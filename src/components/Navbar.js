@@ -18,16 +18,14 @@ const NavbarComponent = () => {
             <Nav className="me-auto">
               <Nav.Link onClick={handleClick}>Home</Nav.Link>
               <NavDropdown title="Recetas" id="basic-nav-dropdown">
-                <NavDropdown.Item href="#action/3.1">
+                <NavDropdown.Item href="/veganas">
                   Recetas Veganas
                 </NavDropdown.Item>
-                <NavDropdown.Item href="#action/3.2">
-                  Recetas Pasta
-                </NavDropdown.Item>
-                <NavDropdown.Item href="#action/3.3">
+                <NavDropdown.Item href="/pasta">Recetas Pasta</NavDropdown.Item>
+                <NavDropdown.Item href="/carne">
                   Recetas con Carne
                 </NavDropdown.Item>
-                <NavDropdown.Item href="#action/3.4">
+                <NavDropdown.Item href="/gourmet">
                   Recetas Gourmet
                 </NavDropdown.Item>
               </NavDropdown>

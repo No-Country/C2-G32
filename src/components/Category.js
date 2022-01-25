@@ -1,11 +1,13 @@
 import { useEffect, useState } from "react";
 import { Row, Col, Card, Container, Button, Form } from "react-bootstrap";
+import Footer from "./Footer";
+import NavbarComponent from "./Navbar";
 
 const recipes = [
   {
     id: 1,
     name: "Aros de Cebolla y Calabazas",
-    thumbnail: "calabazas-con-aros-de-cebolla.jpg",
+    thumbnail: "http://localhost:3000/calabazas-con-aros-de-cebolla.jpg",
     ingredientes: {
       ingrediente1: "Calabacita",
       ingrediente2: "Cebolla",
@@ -26,7 +28,7 @@ const recipes = [
   {
     id: 2,
     name: "Trufas de Chocolate Vegana",
-    thumbnail: "bolitas-de-chocolate-veganas.jpg",
+    thumbnail: "http://localhost:3000/bolitas-de-chocolate-veganas.jpg",
     ingredientes: {
       ingrediente1: "Datil",
       ingrediente2: "Cacao",
@@ -43,7 +45,7 @@ const recipes = [
   {
     id: 3,
     name: "Ensalada Mediterranea",
-    thumbnail: "ensalada-mediterranea.jpg",
+    thumbnail: "http://localhost:3000/ensalada-mediterranea.jpg",
     ingredientes: {
       ingrediente1: "Rabanos",
       ingrediente2: "Jitomates cherry rojo y amarillo",
@@ -60,7 +62,7 @@ const recipes = [
   {
     id: 4,
     name: "Ensalada de mandarina con naranja, miel y hojas de menta",
-    thumbnail: "ensalada-dulce.jpg",
+    thumbnail: "http://localhost:3000/ensalada-dulce.jpg",
     ingredientes: {
       ingrediente1: "Naranjas",
       ingrediente2: "Mandarinas",
@@ -77,7 +79,7 @@ const recipes = [
   {
     id: 5,
     name: "Espagueti rojo",
-    thumbnail: "espagueti-rojo.jpg",
+    thumbnail: "http://localhost:3000/espagueti-rojo.jpg",
     ingredientes: {
       ingrediente1: "1 paquete de espagueti",
       ingrediente2: " 1/4 de crema agria",
@@ -100,7 +102,7 @@ const recipes = [
   {
     id: 6,
     name: "Costillas de cerdo a la barbacoa",
-    thumbnail: "costillas-de-cerdo-barbecue.jpg",
+    thumbnail: "http://localhost:3000/costillas-de-cerdo-barbecue.jpg",
     ingredientes: {
       ingrediente1: "Un costillar de costilla corta de cerdo",
       ingrediente2: "1 taza de cátsup",
@@ -120,7 +122,7 @@ const recipes = [
   },
 ];
 
-const CardRecipe = () => {
+const Category = (prop) => {
   const [item, setItem] = useState([]);
   const [loading, setLoading] = useState(false);
   console.log(item);
@@ -146,6 +148,7 @@ const CardRecipe = () => {
 
   return (
     <>
+      <NavbarComponent />
       <Container>
         {loading ? (
           <div className="loading">
@@ -155,7 +158,7 @@ const CardRecipe = () => {
             />
           </div>
         ) : (
-          <Row xs={1} md={2} className="g-4">
+          <Row xs={1} md={2} className="g-4 mt-5 mb-3">
             {item.map((it) => (
               <Col>
                 <Card>
@@ -189,8 +192,9 @@ const CardRecipe = () => {
           </Row>
         )}
       </Container>
+      <Footer />
     </>
   );
 };
 
-export default CardRecipe;
+export default Category;
