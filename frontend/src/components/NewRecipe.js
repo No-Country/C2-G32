@@ -1,82 +1,103 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import Navbar from './Navbar'
 const NewRecipe = () => {
   const [formularioEnviado, setFormularioEnviado] = useState(false);
 
+  const [nombre, setNombre]= useState("");
+  const [tipo, setTipo]= useState("");
+  const [thumbnail, setThumbnail]= useState("");
+  const [usuario, setUsuario]= useState("");
+  const [ingredientes, setIngrediente] = useState("");
+  const [descripciones, setDescripcion] = useState("");
+
+
+
+  const [iList, setiList] = useState([]);
+  const [dList, setdList] = useState([]);
+
+  const handleIngredientsChange = (e) => {
+      setIngrediente(e.target.value);
+  }
+
+  const handleDescriptionChange = (e) => {
+    setDescripcion(e.target.value);
+  }
+
+  const handleIngredient = (e) => {
+   if(ingredientes){
+    setiList([...iList, ingredientes])
+    setIngrediente("")
+   }
+    
+    //console.log(iList)
+  }
+
+  const handleDescription = (e) => {
+    if(descripciones){
+    setdList([...dList, descripciones])
+    setDescripcion("")
+    //console.log(iList)
+    }
+  }
+
+  const handleNameChange = (e) => {
+    setNombre(e.target.value);
+  };
+
+  const handleTypeChange = (e) => {
+    setTipo(e.target.value);
+  };
+
+  const handleThumbnailChange = (e) => {
+    setThumbnail(e.target.value);
+  };
+
+  const handleUserChange = (e) => {
+    setUsuario(e.target.value);
+  };
+
+  const handleNewRecipe = (e) => {
+    if(nombre && tipo && thumbnail && iList && dList && usuario){
+      let values = {
+      "recipe_name": nombre,
+      "recipe_type": tipo,
+      "thumbnail": thumbnail,
+      "ingredients": iList,
+      "description": dList,
+      "user_id": parseInt(usuario)
+      };
+      //console.log(values)
+      let json_values = JSON.stringify(values)
+      console.log(json_values)
+      fetch('https://nocountry-g32app.herokuapp.com/api/v1/posts/', {
+      mode: 'no-cors',
+      method: 'post',
+      headers: {'Content-Type':'application/json','Access-Control-Allow-Origin': '*'},
+      body: json_values
+      });
+
+      //resetForm();
+
+      setFormularioEnviado(true);
+      setTimeout(() => setFormularioEnviado(false), 4000);
+    }
+  };
+
+  useEffect(() => {
+    //let isMounted = true;               // note mutable flag 
+    return () => 
+    { 
+      //isMounted = false 
+    }; // cleanup toggles value, if unmounted
+  }, []); 
+
   return (
     <>
     <Navbar/>
-      <Formik
-        initialValues={{
-          recipe_name: "",
-          recipe_type: "",
-          thumbnail: "",
-          ingredients: "",
-          description: "",
-          user_id:""
-        }}
-        validate={(valores) => {
-          let errores = {};
-
-          if (!valores.recipe_name) {
-            errores.nombre = "Por favor complete el campo";
-          } 
-
-          if (!valores.recipe_type) {
-            errores.nombre = "Por favor complete el campo";
-          } 
-
-          if (!valores.thumbnail) {
-            errores.nombre = "Por favor complete el campo";
-          } 
-
-          if (!valores.ingredients) {
-            errores.nombre = "Por favor complete el campo";
-          } 
-          
-          if (!valores.description) {
-            errores.nombre = "Por favor complete el campo";
-          } 
-
-          if (!valores.user_id) {
-            errores.nombre = "Por favor complete el campo";
-          } 
-
-          return errores;
-        }}
-        onSubmit={(valores, { resetForm }) => {
-          let ingredientes = [];
-          let descripcion = [];
-
-          ingredientes.push(valores.ingredients);
-          descripcion.push(valores.description);
-
-          let values = {
-            "recipe_name": valores.recipe_name,
-            "recipe_type": valores.recipe_type,
-            "thumbnail": valores.thumbnail,
-            "ingredients": ingredientes,
-            "description": descripcion,
-            "user_id": parseInt(valores.user_id)
-           };
-
-          let json_values = JSON.stringify(values)
-          //console.log(json_values)
-          fetch('https://nocountry-g32app.herokuapp.com/api/v1/posts/', {
-            mode: 'no-cors',
-            method: 'post',
-            headers: {'Content-Type':'application/json','Access-Control-Allow-Origin': '*'},
-            body: json_values
-           });
-
-          resetForm();
-
-          setFormularioEnviado(true);
-          setTimeout(() => setFormularioEnviado(false), 4000);
-        }}
-      >
-        {({ errors }) => (
+      <Formik>
+          <div className="container">
+            <div className="col-12" style={{ paddingBottom: "50px" }}>
           <Form className="formulario">
             <div>
               <label htmlFor="nombre">Nombre Receta</label>
@@ -85,10 +106,9 @@ const NewRecipe = () => {
                 id="recipe_name"
                 name="recipe_name"
                 placeholder="Nombre"
-              />
-              <ErrorMessage
-                name="recipe_name"
-                component={() => <div className="error">{errors.recipe_name}</div>}
+                className="form-control" 
+                value={nombre}
+                onChange={ handleNameChange }
               />
             </div>
             <div>
@@ -98,10 +118,9 @@ const NewRecipe = () => {
                 id="recipe_type"
                 name="recipe_type"
                 placeholder="Tipo"
-              />
-              <ErrorMessage
-                name="recipe_type"
-                component={() => <div className="error">{errors.recipe_type}</div>}
+                className="form-control" 
+                value={tipo}
+                onChange={ handleTypeChange }
               />
             </div>
             <div>
@@ -111,42 +130,84 @@ const NewRecipe = () => {
                 id="thumbnail"
                 name="thumbnail"
                 placeholder="Imagen"
-              />
-              <ErrorMessage
-                name="thumbnail"
-                component={() => (
-                  <div className="error">{errors.thumbnail}</div>
-                )}
+                className="form-control" 
+                value={thumbnail}
+                onChange={ handleThumbnailChange }
               />
             </div>
             
-            <div>
-              <label htmlFor="correo">Ingredientes</label>
-              <Field
-                type="text"
-                name="ingredients"
-                placeholder="Ingredientes"
-                id="ingredients"
-              />
-              <ErrorMessage
-                name="ingredients"
-                component={() => <div className="error">{errors.ingredients}</div>}
-              />
+            <div >
+                <label>Ingredientes</label>
+                <div className="form-row">
+                  <div className="mb-4 col-11">
+                    <Field
+                      type="text"
+                      name="ingredients"
+                      placeholder="Ingredientes"
+                      id="ingredients"
+                      className="input-group"
+                      value={ingredientes}
+                      onChange={ handleIngredientsChange }
+                    />
+                  </div>
+                  <div className="mb-4 col-1">
+                    <button className="btn btn-outline-info" 
+                      id="enter" 
+                      type="button"
+                      onClick={ handleIngredient }>
+                        Add
+                    </button>
+                  </div>
+                </div>
+
+                <div className="col-12 mb-4">
+                  <ul className="list-group">
+                      {iList.map((it, index) => {
+                      return (
+                        <li key={index} className="list-group-item">{it}</li>
+                      );
+                      })}
+                  </ul>
+                 </div>
             </div>
 
-            <div>
-              <label htmlFor="correo">Descripcion</label>
-              <Field
-                type="text"
-                name="description"
-                placeholder="Descripcion"
-                id="description"
-              />
-              <ErrorMessage
-                name="description"
-                component={() => <div className="error">{errors.description}</div>}
-              />
+            <div >
+                <label>Pasos a seguir!</label>
+                <div className="form-row">
+                  <div className="mb-4 col-11">
+                    <Field
+                      type="text"
+                      name="descriptions"
+                      placeholder="Descripciones"
+                      id="descriptions"
+                      className="input-group"
+                      value={descripciones}
+                      onChange={ handleDescriptionChange }
+                    />
+                  </div>
+                  <div className="mb-4 col-1">
+                    <button className="btn btn-outline-info" 
+                      id="enter" 
+                      type="button"
+                      onClick={ handleDescription }>
+                        Add
+                    </button>
+                  </div>
+                </div>
+
+                <div className="col-12 mb-4">
+                  <ul className="list-group">
+                    
+                      {dList.map((it, index) => {
+                      return (
+                        <li key={index} className="list-group-item">{it}</li>
+                      );
+                      })}
+
+                  </ul>
+                 </div>
             </div>
+
 
             <div>
               <label htmlFor="correo">USER ID</label>
@@ -155,20 +216,19 @@ const NewRecipe = () => {
                 name="user_id"
                 placeholder="id"
                 id="user_id"
-              />
-              <ErrorMessage
-                name="correo"
-                component={() => <div className="error">{errors.user_id}</div>}
+                value={usuario}
+                onChange={ handleUserChange }
               />
             </div>
 
-
-            <button type="submit">Enviar</button>
+            <button onClick={ handleNewRecipe } className="btn btn-primary btn-lg btn-block" type="button">Enviar</button>
             {formularioEnviado && (
               <p className="exito">Formulario enviado con exito!</p>
-            )}
+            )
+            }
           </Form>
-        )}
+          </div>
+          </div>
       </Formik>
     </>
   );
