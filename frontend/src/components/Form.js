@@ -35,7 +35,7 @@ const Formulario = () => {
 
           //validacion username
           if (!valores.username) {
-            errores.apellido = "Por favor ingresa un username";
+            errores.username = "Por favor ingresa un username";
           } else if (!/^[a-zA-ZÀ-ÿ\s]{1,40}$/.test(valores.username)) {
             errores.username =
               "El username solo puede contener letras y espacios";
