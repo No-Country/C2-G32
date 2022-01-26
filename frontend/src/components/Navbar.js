@@ -12,16 +12,12 @@ const NavbarComponent = () => {
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="me-auto">
-              <Nav.Link href="/home">
-                Home
-              </Nav.Link>
+              <Nav.Link href="/home">Home</Nav.Link>
               <NavDropdown title="Recetas" id="basic-nav-dropdown">
                 <NavDropdown.Item href="/Vegana">
                   Recetas Veganas
                 </NavDropdown.Item>
-                <NavDropdown.Item href="/Pasta">
-                  Recetas Pasta
-                </NavDropdown.Item>
+                <NavDropdown.Item href="/Pasta">Recetas Pasta</NavDropdown.Item>
                 <NavDropdown.Item href="/Carnes">
                   Recetas con Carne
                 </NavDropdown.Item>
@@ -33,9 +29,6 @@ const NavbarComponent = () => {
                 <NavDropdown.Item href="#action/3.1">
                   GitHub Julian Perna
                 </NavDropdown.Item>
-                <NavDropdown.Item href="#action/3.2">
-                  GitHub Maira Berdun
-                </NavDropdown.Item>
                 <NavDropdown.Item href="#action/3.3">
                   GitHub Robert Linares
                 </NavDropdown.Item>
@@ -44,13 +37,11 @@ const NavbarComponent = () => {
                 </NavDropdown.Item>
               </NavDropdown>
               <Nav.Link href="/Rank">Recetas mas votadas</Nav.Link>
-
               <Button variant="primary" size="sm" active>
                 <NavLink to="/addrecipe" className="link">
                   Nueva!
                 </NavLink>
               </Button>{" "}
-
             </Nav>
           </Navbar.Collapse>
           <Navbar.Collapse className="justify-content-end">
