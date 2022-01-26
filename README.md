@@ -7,7 +7,7 @@ Sitio web que permite clasificar por distintas categorías distintas comidas. Se
 ## Table of contents
 * [Stack](#Stack)
 * [Roles](#Roles)
-* [Link del deploy](#Link deel deploy)
+* [Link del deploy](#Link)
 
 ## Stack
 ```sh
