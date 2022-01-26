@@ -29,9 +29,9 @@ Julian Perna
 ```
 ## Link
 ```
-https://recetas-faciles.herokuapp.com/
+[Heroku Pages](https://recetas-faciles.herokuapp.com/)
 ```
 ```
-https://c2-g32-e0zm6f1um-no-country-c2-g32.vercel.app/
+[Vercel Pages](https://c2-g32-e0zm6f1um-no-country-c2-g32.vercel.app/)
 ```
 
