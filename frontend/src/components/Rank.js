@@ -10,10 +10,10 @@ const RankRecipe = ( props ) => {
     var json;
     
     useEffect(() => {
-        getAllRecipes();
+      getRankRecipes();
     }, [])
 
-    function getAllRecipes() {
+    function getRankRecipes() {
         fetch('https://nocountry-g32app.herokuapp.com/api/v1/posts/rank')
           .then(response => {
             return response.text();
@@ -32,7 +32,7 @@ const RankRecipe = ( props ) => {
     return (
         <>
             <Container>
-            <table className="table table-striped table-dark">
+            <table className="table table-striped table-light">
             <thead>
               <tr>
                 <th scope="col">#</th>
@@ -55,6 +55,9 @@ const RankRecipe = ( props ) => {
             </tbody>
             </table>
             </Container> 
+
+            <div class="container" >
+              <div style={{ textAlign: "center" }}><b>Para ver las mas votadas, suscribite!</b></div></div>
         </>
 
     )

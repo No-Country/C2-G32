@@ -6,7 +6,6 @@ function Home () {
   return (
     <>
         <NavbarComponent className="navbar"/>
-        
           <Jumbotron/>
           <Footer/>
     </>

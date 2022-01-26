@@ -1,24 +1,51 @@
 
 import { useEffect, useState } from 'react';
-import { Row, Col, Card, Container, Button, Form, Modal } from 'react-bootstrap';
+import { Row, Col, Card, Container, Button, Form, Modal,Table } from 'react-bootstrap';
 import { Navigate } from 'react-router-dom';
 
 
 const CardRecipe = ( props ) => {
 
     const [show, setShow] = useState(false);
-
+    const [comentario, setComentario] = useState("");
     const [recipe, setRecipe] = useState([]);
+    const [ver_comentarios, setVer_comentarios] = useState([]);
+    
 
-    const handleClose = () => setShow(false);
+    const handleClose = () => {
+        setShow(false)
+        setRecipe({...[]})
+        if(ver_comentarios)
+            setVer_comentarios([])
+    };
     
     const handleShow = (e) => {
-        //console.log(recipe_id)
         getOneRecipes(parseInt(e.currentTarget.id));
+        getCommentRecipes(e.currentTarget.id);
         setShow(true);
     }
     
+    const handleSendComment = (e) => {
+        
+        let values = {
+            "recipe_id": parseInt(e.currentTarget.id),
+            "name": "anonymous",
+            "comment": comentario
+            };
+        //console.log(values)
+        let json_values = JSON.stringify(values)
+        console.log(json_values)
+        fetch('https://nocountry-g32app.herokuapp.com/api/v1/comment/', {
+            mode: 'no-cors',
+            method: 'post',
+            headers: {'Content-Type':'application/json','Access-Control-Allow-Origin': '*'},
+            body: json_values
+        });
+    }
 
+    const handleComment = (e) => {
+        setComentario(e.target.value);
+    }
 
     const [recipes, setRecipes] = useState([]);
     var json;
@@ -67,6 +94,22 @@ const CardRecipe = ( props ) => {
           });
     }
 
+    function getCommentRecipes(id) {
+        fetch('https://nocountry-g32app.herokuapp.com/api/v1/comment/'+id)
+          .then(response => {
+            return response.text();
+          })
+          .then(data => {
+            if(data.includes('"recipe":null')){
+                console.log('NO DATA');
+                return (<Navigate to="/home" />);
+            }
+            json=JSON.parse(data)['comment']; //convert JSON to array javascript
+            console.log(json);
+            setVer_comentarios(json);
+          });
+    }
+
     const handleLike = (e) => {
         let recipe_id=parseInt(e.currentTarget.id);
 
@@ -99,20 +142,18 @@ const CardRecipe = ( props ) => {
                                 
                                     <Card.Title>{it.recipe_name}</Card.Title>
                                     
-                                    <Button onClick={handleShow} className="mb-1"variant="primary" size="sm" active id={it.id}>
+                                    <Button onClick={handleShow} className="mb-1"variant="info" size="sm" active id={it.id}>
                                     Ver Receta
                                     </Button>{''}
-                                    <Button className="mb-1"variant="primary" size="sm" active id={it.id}
+                                    <Button className="mb-1"variant="light" size="sm" active id={it.id}
                                     onClick={ handleLike }>
-                                    Like
+                                    💙
                                     </Button>{''}
                                     <Col>
-                                        <Form.Control className="mb-1" size="sm" type="text" placeholder="Escribir comentario" />
+                                        <Form.Control onChange={handleComment} className="mb-1" size="sm" type="text" placeholder="Escribir comentario" />
                                     </Col>
-                                    <Button className="mb-1" variant="primary" size="sm" active>
-                                        Borrar  
-                                    </Button>
-                                    <Button variant="primary" size="sm" active>
+                                    <Button onClick={handleSendComment} variant="link" size="sm" active id={it.id}
+                                    >
                                         Enviar
                                     </Button>
                                     
@@ -130,26 +171,97 @@ const CardRecipe = ( props ) => {
             animation={true}
             size="md">
                 <Modal.Header closeButton>
-                        <Modal.Title>{recipe.recipe_name}</Modal.Title>
+                        <Modal.Title><p><strong>{recipe.recipe_name} - {recipe.likes}💙</strong></p></Modal.Title>
                 </Modal.Header>
-
-                Ingredientes:
+                
+                    <img className='ml-4 mr-4 mb-2 mt-2' src={recipe.thumbnail}></img>
+                   
+                <div className='ml-2' style={{ textAlign: "center" }}><p><strong>Ingredientes</strong></p></div>
                 <Modal.Body>
-
-                    
-                    {recipe.ingredients}
+                <table className="table">
+                          <tbody> 
+                    {
+                        recipe.ingredients ?
+                        (
+                        recipe.ingredients.map((it, index) => {
+                            return (
+                            <>
+                            
+                            <tr key={index}>
+                            <th scope="row">*</th>
+                            <td>{it}</td>
+                            </tr>
+                           
+                            </>
+                        )})
+                    )
+                    :
+                    (
+                        <div></div>
+                    )}
+                     </tbody>
+                            </table>
                 </Modal.Body>
 
-                    Descripcion:
+                <div className='ml-2' style={{ textAlign: "center" }}><p><strong>Pasos a seguir!</strong></p></div>
                 <Modal.Body>
-                    {recipe.description}
+                <table className="table">
+                          <tbody> 
+                    {
+                        recipe.description ?
+                        (
+                        recipe.description.map((it, index) => {
+                            return (
+                            <>
+                            
+                            <tr key={index}>
+                            <th scope="row">{index+1}</th>
+                            <td>{it}</td>
+                            </tr>
+                           
+                            </>
+                        )})
+                    )
+                    :
+                    (
+                        <div></div>
+                    )}
+                     </tbody>
+                     </table>
                 </Modal.Body>
+
+                <hr></hr>
+                
+                <Table striped bordered hover variant="dark">
+                <tbody> 
+                {
+                        ver_comentarios ?
+                        (
+                            ver_comentarios.map((it, index) => {
+                            return (
+                            <>
+                            
+                            <tr key={index}>
+                            <th scope="row">{it.comment}</th>
+                            <td>{it.name}</td>
+                            <td>{it.created_at}</td>
+                            </tr>
+                           
+                            </>
+                        )})
+                    )
+                    :
+                    (
+                        <div></div>
+                    )
+                }
+                </tbody>
+                </Table>
 
                 <Modal.Footer>
                     <button type="button" className="btn btn-secondary" onClick={handleClose}>Close</button>
                 </Modal.Footer>
             </Modal>
-        
         </>
 
     )
