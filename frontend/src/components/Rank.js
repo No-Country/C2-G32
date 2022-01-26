@@ -37,7 +37,7 @@ const RankRecipe = ( props ) => {
             <table className="table table-striped table-light">
             <thead>
               <tr>
-                <th scope="col">🏆</th>
+                <th style={{ textAlign: "center" }} scope="col">🏆</th>
                 <th scope="col" style={{ textAlign: "center" }}>Nombre</th>
                 <th scope="col" style={{ textAlign: "center" }}>Tipo</th>
                 <th scope="col" style={{ textAlign: "center" }}>Likes</th>
@@ -47,10 +47,10 @@ const RankRecipe = ( props ) => {
                 {recipes.map((it, index) => {
                     return (
                       <tr key={index}>
-                      <th className="display-6" scope="row">{index+1}</th>
-                      <td className="display-6" style={{ textAlign: "center" }}>{it.recipe_name}</td>
-                      <td className="display-6"style={{ textAlign: "center" }}>{it.recipe_type}</td>
-                      <td className="display-6"style={{ textAlign: "center" }}>{it.likes}</td>
+                      <th style={{ textAlign: "center" }}scope="row"><strong>{index+1}</strong></th>
+                      <td style={{ textAlign: "center" }}>{it.recipe_name}</td>
+                      <td style={{ textAlign: "center" }}>{it.recipe_type}</td>
+                      <td style={{ textAlign: "center" }}>{it.likes}</td>
                       </tr>
                 ); })
                 }

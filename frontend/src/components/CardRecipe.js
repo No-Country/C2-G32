@@ -131,6 +131,7 @@ const CardRecipe = ( props ) => {
 
     return (
         <>
+        
             <Container>
             <Row xs={1} md={2} className="g-4">
                 {recipes.map((it, index) => {
@@ -238,39 +239,41 @@ const CardRecipe = ( props ) => {
 
                 <hr></hr>
                 
-                <Table striped bordered hover variant="dark">
-                <tbody> 
-                {
-                        ver_comentarios ?
-                        (
-                            ver_comentarios.map((it, index) => {
-                            return (
-                            <>
+                <div className='ml-2 mr-2'>
+                    <Table striped bordered hover variant="dark" >
+                    <tbody> 
+                    {
+                            ver_comentarios ?
+                            (
+                                ver_comentarios.map((it, index) => {
+                                return (
+                                <>
+                                
+                                <tr key={index}>
+                                <td scope="row" style={{ textAlign: "center", width: '50%'}}>{it.comment}</td>
+                                <td style={{ textAlign: "center" ,width: '20%'}}>{it.name}</td>
+                                <td title={it.created_at} style={{ textAlign: "center",width: '30%' }}>
+                                    {
+                                    new Intl.DateTimeFormat('en-GB', { 
+                                        month: 'long', 
+                                        day: '2-digit',
+                                        year: 'numeric', 
+                                        hour: 'numeric', minute: 'numeric', second: 'numeric',
+                                    }).format(new Date(it.created_at))}
+                                </td>
+                                </tr>
                             
-                            <tr key={index}>
-                            <td scope="row" style={{ textAlign: "center", width: '50%'}}>{it.comment}</td>
-                            <td style={{ textAlign: "center" ,width: '20%'}}>{it.name}</td>
-                            <td title={it.created_at} style={{ textAlign: "center",width: '30%' }}>
-                                {
-                                new Intl.DateTimeFormat('en-GB', { 
-                                    month: 'long', 
-                                    day: '2-digit',
-                                    year: 'numeric', 
-                                    hour: 'numeric', minute: 'numeric', second: 'numeric',
-                                }).format(new Date(it.created_at))}
-                            </td>
-                            </tr>
-                           
-                            </>
-                        )})
-                    )
-                    :
-                    (
-                        <div></div>
-                    )
-                }
-                </tbody>
-                </Table>
+                                </>
+                            )})
+                        )
+                        :
+                        (
+                            <div></div>
+                        )
+                    }
+                    </tbody>
+                    </Table>
+                </div>
 
                 <Modal.Footer>
                     <button type="button" className="btn btn-secondary" onClick={handleClose}>Cerrar</button>
