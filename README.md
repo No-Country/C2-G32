@@ -28,10 +28,9 @@ Erika Belen Sandoval
 Julian Perna
 ```
 ## Link
-```
+
 [Heroku Pages](https://recetas-faciles.herokuapp.com/)
-```
-```
+
 [Vercel Pages](https://c2-g32-e0zm6f1um-no-country-c2-g32.vercel.app/)
-```
+
 
