@@ -5,9 +5,9 @@
 Sitio web que permite clasificar por distintas categorías distintas comidas. Se podrá publicar, comentar y votar!
 
 ## Table of contents
-* [Stack](#requeriments)
-* [Roles](#run)
-* [Link del deploy](#contributing)
+* [Stack](#Stack)
+* [Roles](#Roles)
+* [Link del deploy](#Link deel deploy)
 
 ## Stack
 ```sh
