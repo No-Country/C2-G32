@@ -27,6 +27,6 @@ Robert Linares
 Erika Belen Sandoval
 Julian Perna
 ```
-## Link del deploy
+## Link
 https://recetas-faciles.herokuapp.com/
 
