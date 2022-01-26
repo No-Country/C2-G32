@@ -1,5 +1,5 @@
 
-#RECETAS FACILES
+# RECETAS FACILES
 
 ## Introduction
 Sitio web que permite clasificar por distintas categorías distintas comidas. Se podrá publicar, comentar y votar!
