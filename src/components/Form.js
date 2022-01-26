@@ -1,12 +1,12 @@
 import React, { useState } from "react";
 import { Formik, Form, Field, ErrorMessage } from "formik";
-import Navbar from './Navbar'
+import Navbar from "./Navbar";
 const Formulario = () => {
   const [formularioEnviado, setFormularioEnviado] = useState(false);
 
   return (
     <>
-    <Navbar/>
+      <Navbar />
       <Formik
         initialValues={{
           nombre: "",
@@ -35,7 +35,7 @@ const Formulario = () => {
 
           //validacion username
           if (!valores.username) {
-            errores.apellido = "Por favor ingresa un username";
+            errores.username = "Por favor ingresa un username";
           } else if (!/^[a-zA-ZÀ-ÿ\s]{1,40}$/.test(valores.username)) {
             errores.username =
               "El username solo puede contener letras y espacios";
@@ -79,21 +79,24 @@ const Formulario = () => {
         }}
         onSubmit={(valores, { resetForm }) => {
           let values = {
-            "first_name": valores.nombre,
-            "last_name": valores.apellido,
-            "username": valores.username,
-            "email": valores.correo,
-            "password": valores.contraseña
-           };
+            first_name: valores.nombre,
+            last_name: valores.apellido,
+            username: valores.username,
+            email: valores.correo,
+            password: valores.contraseña,
+          };
 
-          let json_values = JSON.stringify(values)
-          console.log(json_values)
-          fetch('http://localhost:8000/api/v1/users', {
-            mode: 'no-cors',
-            method: 'post',
-            headers: {'Content-Type':'application/json','Access-Control-Allow-Origin': '*'},
-            body: json_values
-           });
+          let json_values = JSON.stringify(values);
+          console.log(json_values);
+          fetch("http://localhost:8000/api/v1/users", {
+            mode: "no-cors",
+            method: "post",
+            headers: {
+              "Content-Type": "application/json",
+              "Access-Control-Allow-Origin": "*",
+            },
+            body: json_values,
+          });
 
           resetForm();
 
@@ -103,95 +106,107 @@ const Formulario = () => {
       >
         {({ errors }) => (
           <div className="container">
-             <h1 className="display-4" style={{ textAlign: "center" }}>Registrate!</h1>
+            <h1 className="display-4" style={{ textAlign: "center" }}>
+              Registrate!
+            </h1>
             <div className="col-12" style={{ paddingBottom: "50px" }}>
               <Form className="formulario">
-              <div>
-                <label htmlFor="nombre">Nombre</label>
-                <Field
-                  type="text"
-                  id="nombre"
-                  name="nombre"
-                  placeholder="Nombre"
-                />
-                <ErrorMessage
-                  name="nombre"
-                  component={() => <div className="error">{errors.nombre}</div>}
-                />
-              </div>
-              <div>
-                <label htmlFor="apellido">Apellido</label>
-                <Field
-                  type="text"
-                  id="apellido"
-                  name="apellido"
-                  placeholder="Apellido"
-                />
-                <ErrorMessage
-                  name="apellido"
-                  component={() => <div className="error">{errors.apellido}</div>}
-                />
-              </div>
-              <div>
-                <label htmlFor="username">Username</label>
-                <Field
-                  type="text"
-                  id="username"
-                  name="username"
-                  placeholder="username"
-                />
-                <ErrorMessage
-                  name="username"
-                  component={() => (
-                    <div className="error">{errors.username}</div>
-                  )}
-                />
-              </div>
-              <div>
-                <label htmlFor="contraseña">Contraseña</label>
-                <Field
-                  type="password"
-                  id="contraseña"
-                  name="contraseña"
-                  placeholder="Contraseña"
-                />
-                <ErrorMessage
-                  name="contraseña"
-                  component={() => (
-                    <div className="error">{errors.contraseña}</div>
-                  )}
-                />
-              </div>
-              <div>
-                <label htmlFor="confirmacion"> Verificar Contraseña</label>
-                <Field type="password" id="confirmacion" name="confirmacion" />
-                <ErrorMessage
-                  name="contraseña"
-                  component={() => (
-                    <div className="error">{errors.confirmacion}</div>
-                  )}
-                />
-              </div>
-              <div>
-                <label htmlFor="correo">Correo</label>
-                <Field
-                  type="text"
-                  name="correo"
-                  placeholder="correo@correo.com"
-                  id="correo"
-                />
-                <ErrorMessage
-                  name="correo"
-                  component={() => <div className="error">{errors.correo}</div>}
-                />
-              </div>
+                <div>
+                  <label htmlFor="nombre">Nombre</label>
+                  <Field
+                    type="text"
+                    id="nombre"
+                    name="nombre"
+                    placeholder="Nombre"
+                  />
+                  <ErrorMessage
+                    name="nombre"
+                    component={() => (
+                      <div className="error">{errors.nombre}</div>
+                    )}
+                  />
+                </div>
+                <div>
+                  <label htmlFor="apellido">Apellido</label>
+                  <Field
+                    type="text"
+                    id="apellido"
+                    name="apellido"
+                    placeholder="Apellido"
+                  />
+                  <ErrorMessage
+                    name="apellido"
+                    component={() => (
+                      <div className="error">{errors.apellido}</div>
+                    )}
+                  />
+                </div>
+                <div>
+                  <label htmlFor="username">Username</label>
+                  <Field
+                    type="text"
+                    id="username"
+                    name="username"
+                    placeholder="username"
+                  />
+                  <ErrorMessage
+                    name="username"
+                    component={() => (
+                      <div className="error">{errors.username}</div>
+                    )}
+                  />
+                </div>
+                <div>
+                  <label htmlFor="contraseña">Contraseña</label>
+                  <Field
+                    type="password"
+                    id="contraseña"
+                    name="contraseña"
+                    placeholder="Contraseña"
+                  />
+                  <ErrorMessage
+                    name="contraseña"
+                    component={() => (
+                      <div className="error">{errors.contraseña}</div>
+                    )}
+                  />
+                </div>
+                <div>
+                  <label htmlFor="confirmacion"> Verificar Contraseña</label>
+                  <Field
+                    type="password"
+                    id="confirmacion"
+                    name="confirmacion"
+                  />
+                  <ErrorMessage
+                    name="contraseña"
+                    component={() => (
+                      <div className="error">{errors.confirmacion}</div>
+                    )}
+                  />
+                </div>
+                <div>
+                  <label htmlFor="correo">Correo</label>
+                  <Field
+                    type="text"
+                    name="correo"
+                    placeholder="correo@correo.com"
+                    id="correo"
+                  />
+                  <ErrorMessage
+                    name="correo"
+                    component={() => (
+                      <div className="error">{errors.correo}</div>
+                    )}
+                  />
+                </div>
 
-              <button type="submit">Enviar</button>
-              {formularioEnviado && (
-                <p className="exito">Formulario enviado con exito!</p>
-              )}
-            </Form>
-          </div>
+                <button type="submit">Enviar</button>
+                {formularioEnviado && (
+                  <p className="exito">Formulario enviado con exito!</p>
+                )}
+              </Form>
+            </div>
           </div>
         )}
       </Formik>

@@ -38,7 +38,9 @@ h4{
   flex-direction: column;
   justify-content: center;
 }
-
+.btn{
+  margin-left:5px
+}
 
 body {
 		background-color: #f5a4bb;
