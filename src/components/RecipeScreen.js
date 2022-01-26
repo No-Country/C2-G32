@@ -1,13 +1,16 @@
 import  NavbarComponent  from "./Navbar"
-import Jumbotron from "./Jumbotron"
+import CardRecipe from "./CardRecipe"
 import Footer from "./Footer"
 
 function Home () {
   return (
     <>
         <NavbarComponent className="navbar"/>
-          <Jumbotron/>
-          <Footer/>
+        <div className="container mb-5">
+        
+        </div>
+        <CardRecipe />
+        <Footer/>
     </>
   )
 }

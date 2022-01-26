@@ -1,261 +1,286 @@
-import { useEffect, useState } from "react";
-import {
-  Row,
-  Col,
-  Card,
-  Container,
-  Button,
-  Form,
-  Modal,
-} from "react-bootstrap";
 
-const recipes = [
-  {
-    id: 1,
-    name: "Aros de Cebolla y Calabazas",
-    thumbnail: "calabazas-con-aros-de-cebolla.jpg",
-    ingredientes: {
-      ingrediente1: "Calabacita",
-      ingrediente2: "Cebolla",
-      ingrediente3: "Aceite de Oliva",
-      ingrediente4: "Harina",
-      ingrediente5: "Queso Parmesano",
-      ingrediente6: "Aceite",
-    },
-    descripcion: {
-      proced1:
-        "Asa 2 calabacitas a la plancha con 2 cuacharadas de aceite de oliva. Reserva.",
-      proced2:
-        "De una de harina, guarda dos cucharadas de harina y enharina 1 manojo de aros de cebolla en ellas. Mezcla el resto con 3/4 de taza de cerveza y salpimienta. Pasa los aros por la mezcla y fríelos en aceite caliente hasta que doren y dejen de salir burbujas en el aceite.",
-      proced3:
-        "Sírvelos sobre rebanadas de calabaza y espolvorea 1/2 taza de queso parmesano sobre ellas.",
-    },
-  },
-  {
-    id: 2,
-    name: "Trufas de Chocolate Vegana",
-    thumbnail: "bolitas-de-chocolate-veganas.jpg",
-    ingredientes: {
-      ingrediente1: "Datil",
-      ingrediente2: "Cacao",
-      ingrediente3: "Pepitas de calabazas tostadas y peladas",
-      ingrediente4: "Miel",
-    },
-    descripcion: {
-      proced1:
-        "Coloca 1 taza de datiles sin hueso, 4 cucharadas de cacao, 1 taza de pepitas y 1 taza de miel en el procesador de alimentos. Tritura hasta formar una masa uniforme.",
-      proced2:
-        "Forma bolitas con la mezcla y mantenlas en refrigeración hasta servir.",
-    },
-  },
-  {
-    id: 3,
-    name: "Ensalada Mediterranea",
-    thumbnail: "ensalada-mediterranea.jpg",
-    ingredientes: {
-      ingrediente1: "Rabanos",
-      ingrediente2: "Jitomates cherry rojo y amarillo",
-      ingrediente3: "Pepino",
-      ingrediente4: "Mix de hojas verdes",
-      ingrediente5: "Jugo de limon",
-    },
-    descripcion: {
-      proced1:
-        "Mezcla los alimentos comenzando con las hojas verdes y los rábanos a gusto. Agrega, posteriormente 1 pepino y al final 1/2 jitomates.",
-      proced2: "Para finalizar, baña con jugo de 1 limón.",
-    },
-  },
-  {
-    id: 4,
-    name: "Ensalada de mandarina con naranja, miel y hojas de menta",
-    thumbnail: "ensalada-dulce.jpg",
-    ingredientes: {
-      ingrediente1: "Naranjas",
-      ingrediente2: "Mandarinas",
-      ingrediente3: "Miel",
-      ingrediente4: "Hojas de menta",
-    },
-    descripcion: {
-      proced1:
-        "Coloca en una ensaladera o plato extendido las rodajas de 2 naranjas. Posteriormente acomoda los gajos de 2 mandarinas y agrégales la miel.",
-      proced2:
-        "Finalmente, utiliza las hojas de menta para decorar tu ensalada.",
-    },
-  },
-  {
-    id: 5,
-    name: "Espagueti rojo",
-    thumbnail: "espagueti-rojo.jpg",
-    ingredientes: {
-      ingrediente1: "1 paquete de espagueti",
-      ingrediente2: " 1/4 de crema agria",
-      ingrediente3: "1 taza de puré de jitomate",
-      ingrediente4: "1/4 de mantequilla",
-      ingrediente5: "1 cubo de sazonador de pollo ",
-      ingrediente6: "Queso parmesano",
-      ingrediente7: "Sal y pimienta al gusto",
-    },
-    descripcion: {
-      proced1:
-        "Hierve 2 litros de agua y, cuando esté en su punto, agrega 2 cucharadas de sal. Posteriormente, cuece la pasta hasta que esté blanda..",
-      proced2: "Retira del fuego, cuela la pasta y desecha el agua.",
-      proced3:
-        "Hierve el puré de jitomate a fuego lento y añade la crema, la mantequilla y el cubo sazonador.",
-      proced4: "Vierte el espagueti en la salsa y mezcla.",
-      proced5: "Sirve. Espolvorea con el queso parmesano al gusto. ",
-    },
-  },
-  {
-    id: 6,
-    name: "Costillas de cerdo a la barbacoa",
-    thumbnail: "costillas-de-cerdo-barbecue.jpg",
-    ingredientes: {
-      ingrediente1: "Un costillar de costilla corta de cerdo",
-      ingrediente2: "1 taza de cátsup",
-      ingrediente3: "2 cucharadas de azúcar",
-      ingrediente4: " 1 cucharada de salsa maggi",
-      ingrediente5: " 1 cucharada de salsa inglesa",
-      ingrediente6: "1 cucharada de soya",
-      ingrediente7: "2 cucharadas de salsa ahumada",
-      ingrediente8: "2 cucharadas de aceite",
-    },
-    descripcion: {
-      proced1:
-        "Cuece las costillas en agua hasta que llegue al hervor y cuece por cinco minutos más.",
-      proced2: "Mezcla los ingredientes restantes y baña las costillas.",
-      proced3: "Hornea durante 1 hora a 170oC, trocea y sirve.",
-    },
-  },
-];
+import { useEffect, useState } from 'react';
+import { Row, Col, Card, Container, Button, Form, Modal,Table } from 'react-bootstrap';
+import { Navigate } from 'react-router-dom';
 
-const CardRecipe = () => {
-  const [item, setItem] = useState([]);
-  const [loading, setLoading] = useState(false);
-  const [show, setShow] = useState(false);
 
-  const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
-  console.log(item);
+const CardRecipe = ( props ) => {
 
-  const getRecipes = () => {
-    return new Promise((resolve, reject) => {
-      setTimeout(() => {
-        resolve(recipes);
-      }, 3000);
-    });
-  };
+    const [show, setShow] = useState(false);
+    const [comentario, setComentario] = useState("");
+    const [recipe, setRecipe] = useState([]);
+    const [ver_comentarios, setVer_comentarios] = useState([]);
+    
 
-  useEffect(() => {
-    setLoading(true);
-    getRecipes()
-      .then((res) => {
-        setItem(res);
-      })
-      .finally(() => {
-        setLoading(false);
-      });
-  }, []);
+    const handleClose = () => {
+        setShow(false)
+        setRecipe({...[]})
+        if(ver_comentarios)
+            setVer_comentarios([])
+    };
+    
+    const handleShow = (e) => {
+        getOneRecipes(parseInt(e.currentTarget.id));
+        getCommentRecipes(e.currentTarget.id);
+        setShow(true);
+    }
+    
+    const handleSendComment = (e) => {
+        
+        let values = {
+            "recipe_id": parseInt(e.currentTarget.id),
+            "name": "anonymous",
+            "comment": comentario
+            };
+        //console.log(values)
+        let json_values = JSON.stringify(values)
+        console.log(json_values)
+        fetch('https://nocountry-g32app.herokuapp.com/api/v1/comment/', {
+            mode: 'no-cors',
+            method: 'post',
+            headers: {'Content-Type':'application/json','Access-Control-Allow-Origin': '*'},
+            body: json_values
+        });
+    }
 
-  return (
-    <>
-      <Container>
-        {loading ? (
-          <div className="loading">
-            <img
-              className="load"
-              src="http://www.gifde.com/gif/otros/decoracion/cargando-loading/cargando-loading-041.gif"
-            />
-          </div>
-        ) : (
-          <Row xs={1} md={2} className="g-4">
-            {item.map((it) => (
-              <Col>
-                <Card>
-                  <Card.Body className="cardBody">
-                    <Card.Img variant="top" src={it.thumbnail} />
+    const handleComment = (e) => {
+        setComentario(e.target.value);
+    }
 
-                    <Card.Title>{it.name}</Card.Title>
+    const [recipes, setRecipes] = useState([]);
+    var json;
+    
+    let array=window.location.href.split("/");
+    let size=array.length;
+    let recipe_params=array[size-1]
 
-                    <Button
-                      className="mb-1"
-                      variant="primary"
-                      size="sm"
-                      active
-                      onClick={handleShow}
-                    >
-                      Ver Receta
-                    </Button>
-                    <Modal
-                      backdrop="static"
-                      keyboard={false}
-                      show={show}
-                      onHide={handleClose}
-                      animation={true}
-                      size="md"
-                    >
-                      <Modal.Header closeButton>
-                        <Modal.Title>{it.name}</Modal.Title>
-                      </Modal.Header>
+    useEffect(() => {
+        getAllRecipes();
+            /*getRecipes()
+            .then((res) => {
+                setItem(res);
+            });*/
+    }, [])
 
-                      <Modal.Body>
-                        <img src={it.thumbnail}></img>
-                        <p>
-                          Ingredientes: {it.ingredientes.ingrediente1},{" "}
-                          {it.ingredientes.ingrediente2},{" "}
-                          {it.ingredientes.ingrediente3},{" "}
-                          {it.ingredientes.ingrediente4},{" "}
-                          {it.ingredientes.ingrediente5},{" "}
-                          {it.ingredientes.ingrediente6},{" "}
-                          {it.ingredientes.ingrediente7},{" "}
-                          {it.ingredientes.ingrediente8}.
-                        </p>
-                        <p>
-                          Preparación: {it.descripcion.proced1}
-                          {it.descripcion.proced2} {it.descripcion.proced3}
-                        </p>
-                        <Col
-                        className="pl0">
-                          <Form.Control
-                            size="md"
-                            type="text"
-                            placeholder="Escribir comentario"
-                          />
+    function getAllRecipes() {
+        fetch('https://nocountry-g32app.herokuapp.com/api/v1/posts/type/'+recipe_params)
+          .then(response => {
+            return response.text();
+          })
+          .then(data => {
+            if(data.includes('"recipe":null')){
+                console.log('NO DATA');
+                return (<Navigate to="/home" />);
+            }
+            json=JSON.parse(data)['recipe']; //convert JSON to array javascript
+            console.log(json);
+            setRecipes(json);
+          });
+    }
+
+    function getOneRecipes(id) {
+        fetch('https://nocountry-g32app.herokuapp.com/api/v1/posts/'+id)
+          .then(response => {
+            return response.text();
+          })
+          .then(data => {
+            if(data.includes('"recipe":null')){
+                console.log('NO DATA');
+                return (<Navigate to="/home" />);
+            }
+            json=JSON.parse(data)['recipe']; //convert JSON to array javascript
+            console.log(json);
+            setRecipe(json);
+          });
+    }
+
+    function getCommentRecipes(id) {
+        fetch('https://nocountry-g32app.herokuapp.com/api/v1/comment/'+id)
+          .then(response => {
+            return response.text();
+          })
+          .then(data => {
+            if(data.includes('"recipe":null')){
+                console.log('NO DATA');
+                return (<Navigate to="/home" />);
+            }
+            json=JSON.parse(data)['comment']; //convert JSON to array javascript
+            console.log(json);
+            setVer_comentarios(json);
+          });
+    }
+
+    const handleLike = (e) => {
+        let recipe_id=parseInt(e.currentTarget.id);
+
+        fetch('https://nocountry-g32app.herokuapp.com/api/v1/posts/like/'+recipe_id, {
+            mode: 'no-cors',
+            method: 'post',
+            headers: {'Content-Type':'application/json','Access-Control-Allow-Origin': '*'},
+           })
+           .then(response => {
+               console.log(response)
+            return response.text();
+          })
+          .then(data => {
+            console.log(data)
+          });;
+
+           alert("Gracias por tu like!")
+    }
+
+    return (
+        <>
+        
+            <Container>
+            <Row xs={1} md={2} className="g-4">
+                {recipes.map((it, index) => {
+                    return (
+                        <Col key={index}> 
+                            <Card>
+                                <Card.Body className="cardBody" >
+                                <Card.Img variant="top" src={it.thumbnail} />
+                                
+                                    <Card.Title className="p-3 mt-2 bg-warning text-dark" style={{ textAlign: "center"}}><h4>{it.recipe_name}</h4></Card.Title>
+                                    
+                                    <Button onClick={handleShow} className="mb-1 "variant="info" size="sm" active id={it.id}>
+                                    Ver Receta
+                                    </Button>{''}
+                                    <Button className="mb-1"variant="light" size="sm" active id={it.id}
+                                    onClick={ handleLike }>
+                                    💙
+                                    </Button>{''}
+                                    <Col>
+                                        <Form.Control onChange={handleComment} className="mb-1" size="sm" type="text" placeholder="Escribir comentario" />
+                                    </Col>
+                                    <Button onClick={handleSendComment} variant="link" size="sm" active id={it.id}
+                                    >
+                                        Enviar
+                                    </Button>
+                                    
+                                </Card.Body>
+
+                                    
+                            </Card>    
                         </Col>
-                      </Modal.Body>
+                ); })}
+            
+            </Row>
+            </Container>
 
-                      <Modal.Footer>
-                        <Button variant="secondary" onClick={handleClose}>
-                          Guardar
-                        </Button>
-                        <Button variant="secondary" onClick={handleClose}>
-                          Close
-                        </Button>
-                      </Modal.Footer>
-                    </Modal>
-                    {""}
-                    <Col>
-                      <Form.Control
-                        className="mb-1"
-                        size="sm"
-                        type="text"
-                        placeholder="Escribir comentario"
-                      />
-                    </Col>
-                    <Button className="mb-1" variant="primary" size="sm" active>
-                      Borrar
-                    </Button>
-                    <Button variant="primary" size="sm" active>
-                      Enviar
-                    </Button>
-                  </Card.Body>
-                </Card>
-              </Col>
-            ))}
-          </Row>
-        )}
-      </Container>
-    </>
-  );
-};
+            <Modal show={show} onHide={handleClose}
+            animation={true}
+            size="lg">
+                <Modal.Header closeButton>
+                    <p className="p-3 mb-2 text-black" style={{ textAlign: "left"}}><strong>{recipe.recipe_name}. {recipe.likes}💙</strong></p>
+                </Modal.Header>
+                        
+                
+                <div className='ml-2 mr-2 p-2 mb-2 bg-primary text-white' style={{ textAlign: "center"}}><p><strong>Ingredientes</strong></p></div>
+                <table >
+                
+                    <tr>
+                    <td style={{ width: "50%"}}>
+                    
+                <table className="table">
+                          <tbody> 
+                    {
+                        recipe.ingredients ?
+                        (
+                        recipe.ingredients.map((it, index) => {
+                            return (
+                            <>
+                            <div key={index}>
+                            <div  style={{ textAlign: "center" }}>{it}</div>
+                            </div>
+                           
+                            </>
+                        )})
+                    )
+                    :
+                    (
+                        <div>NR</div>
+                    )}
+                     </tbody>
+                </table>
+                    </td>
+                    <td style={{ width: "50%"}}>
+                        <img className='img-responsive ml-4 mr-4 mb-2 mt-2' style={{width: "80%"}} src={recipe.thumbnail}></img>
+                    </td>
+                    </tr>
+                </table>
+                        <hr></hr>
+                <div className='ml-2 p-2 mr-2 mb-2 bg-info text-white' style={{ textAlign: "center" }}><p><strong>Pasos a seguir!</strong></p></div>
+                <Modal.Body>
+                <table className="table">
+                          <tbody> 
+                    {
+                        recipe.description ?
+                        (
+                        recipe.description.map((it, index) => {
+                            return (
+                            <>
+                            
+                            <tr key={index}>
+                            <th scope="row">{index+1}</th>
+                            <td>{it}</td>
+                            </tr>
+                           
+                            </>
+                        )})
+                    )
+                    :
+                    (
+                        <div>NR</div>
+                    )}
+                     </tbody>
+                     </table>
+                </Modal.Body>
+
+                <hr></hr>
+                
+                <div className='ml-2 mr-2'>
+                    <Table striped bordered hover variant="light" >
+                    <tbody> 
+                    {
+                            ver_comentarios ?
+                            (
+                                ver_comentarios.map((it, index) => {
+                                return (
+                                <>
+                                
+                                <tr key={index}>
+                                <td scope="row" style={{ textAlign: "center", width: '50%'}}>{it.comment}</td>
+                                <td style={{ textAlign: "center" ,width: '20%'}}>{it.name}</td>
+                                <td title={it.created_at} style={{ textAlign: "center",width: '30%' }}>
+                                    {
+                                    new Intl.DateTimeFormat('en-GB', { 
+                                        month: 'long', 
+                                        day: '2-digit',
+                                        year: 'numeric', 
+                                        hour: 'numeric', minute: 'numeric', second: 'numeric',
+                                    }).format(new Date(it.created_at))}
+                                </td>
+                                </tr>
+                            
+                                </>
+                            )})
+                        )
+                        :
+                        (
+                            <div></div>
+                        )
+                    }
+                    </tbody>
+                    </Table>
+                </div>
+
+                <Modal.Footer>
+                    <button type="button" className="btn btn-secondary" onClick={handleClose}>Cerrar</button>
+                </Modal.Footer>
+            </Modal>
+        </>
+    )
+}
 
 export default CardRecipe;

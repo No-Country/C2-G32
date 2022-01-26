@@ -1,56 +1,68 @@
-import { NavLink, useNavigate } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import { Navbar, Container, NavDropdown, Nav, Button } from "react-bootstrap";
+import Logo from '../assets/logo.png';
 
 const NavbarComponent = () => {
-  const navigate = useNavigate();
-  const handleClick = () => {
-    navigate("/");
-  };
   return (
     <>
-      <Navbar bg="light" expand="lg" fixed="top" className="mb-3">
+      <Navbar bg="light" expand="lg">
         <Container>
-          <Navbar.Brand className="logo" href="#home">
+          <Navbar.Brand className="logo" href="/home">
+          <img
+            alt=""
+            src={Logo}
+            width="30"
+            height="30"
+            className="d-inline-block align-top"
+          />{' '}
             Recetas faciles!
           </Navbar.Brand>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="me-auto">
-              <Nav.Link onClick={handleClick}>Home</Nav.Link>
+              <Nav.Link href="/home" className="ml-5">
+                Home
+              </Nav.Link>
               <NavDropdown title="Recetas" id="basic-nav-dropdown">
-                <NavDropdown.Item href="/veganas">
+                <NavDropdown.Item href="/Vegana">
                   Recetas Veganas
                 </NavDropdown.Item>
-                <NavDropdown.Item href="/pasta">Recetas Pasta</NavDropdown.Item>
-                <NavDropdown.Item href="/carne">
+                <NavDropdown.Item href="/Pasta">
+                  Recetas Pasta
+                </NavDropdown.Item>
+                <NavDropdown.Item href="/Carnes">
                   Recetas con Carne
                 </NavDropdown.Item>
-                <NavDropdown.Item href="/gourmet">
+                <NavDropdown.Item href="/Gourmet">
                   Recetas Gourmet
                 </NavDropdown.Item>
               </NavDropdown>
-              <NavDropdown title="Contacto" id="basic-nav-dropdown">
-                <NavDropdown.Item href="https://github.com/julianperna">
-                  GitHub Julian Perna
-                </NavDropdown.Item>
-                <NavDropdown.Item href="https://github.com/MairaBerdun">
-                  GitHub Maira Berdun
-                </NavDropdown.Item>
-                <NavDropdown.Item href="#action/3.3">
-                  GitHub Robert Linares
-                </NavDropdown.Item>
-                <NavDropdown.Item href="https://github.com/SandovalErika">
-                  GitHub Erika Sandoval
-                </NavDropdown.Item>
-              </NavDropdown>
-              <Nav.Link href="#home">Recetas mas votadas</Nav.Link>
+              <Nav.Link href="/Rank">Recetas mas votadas</Nav.Link>
+
+              <Nav.Link href="/about">
+                Contacto
+              </Nav.Link>
+              
+
             </Nav>
           </Navbar.Collapse>
           <Navbar.Collapse className="justify-content-end">
-            <Button variant="primary" size="sm" active className="mr-1">
-              Iniciar sesion
+            <Button variant="primary" size="sm" active>
+                <NavLink to="/addrecipe" className="link">
+                  Nueva!
+                </NavLink>
+              </Button>{" "}
+            <Button variant="light" size="sm" active>
+              <NavLink to="/panel" className="link">
+                Panel
+              </NavLink>
             </Button>{" "}
-            <Button variant="secondary" size="sm" active>
+            <Button variant="light" size="sm" active>
+              <NavLink to="/login" className="link">
+                Iniciar sesion
+              </NavLink>
+            </Button>{" "}
+            <Button  variant="light" size="sm" active>
               <NavLink to="/form" className="link">
                 Registrarse
               </NavLink>
