@@ -37,20 +37,6 @@ const NavbarComponent = () => {
                   Recetas Gourmet
                 </NavDropdown.Item>
               </NavDropdown>
-              <NavDropdown title="Contacto" id="basic-nav-dropdown">
-                <NavDropdown.Item href="#action/3.1">
-                  GitHub Julian Perna
-                </NavDropdown.Item>
-                <NavDropdown.Item href="#action/3.2">
-                  GitHub Maira Berdun
-                </NavDropdown.Item>
-                <NavDropdown.Item href="#action/3.3">
-                  GitHub Robert Linares
-                </NavDropdown.Item>
-                <NavDropdown.Item href="#action/3.4">
-                  GitHub Erika Sandoval
-                </NavDropdown.Item>
-              </NavDropdown>
               <Nav.Link href="/Rank">Recetas mas votadas</Nav.Link>
 
               

@@ -140,7 +140,7 @@ const CardRecipe = ( props ) => {
                                 <Card.Body className="cardBody" >
                                 <Card.Img variant="top" src={it.thumbnail} />
                                 
-                                    <Card.Title>{it.recipe_name}</Card.Title>
+                                    <Card.Title className="p-3 mt-2 bg-warning text-dark" style={{ textAlign: "center"}}><h4>{it.recipe_name}</h4></Card.Title>
                                     
                                     <Button onClick={handleShow} className="mb-1"variant="info" size="sm" active id={it.id}>
                                     Ver Receta
@@ -169,15 +169,18 @@ const CardRecipe = ( props ) => {
 
             <Modal show={show} onHide={handleClose}
             animation={true}
-            size="md">
+            size="lg">
                 <Modal.Header closeButton>
-                        <Modal.Title><p><strong>{recipe.recipe_name} - {recipe.likes}💙</strong></p></Modal.Title>
+                    <p className="p-3 mb-2 text-black" style={{ textAlign: "left"}}><strong>{recipe.recipe_name}. {recipe.likes}💙</strong></p>
                 </Modal.Header>
+                        
                 
-                    <img className='ml-4 mr-4 mb-2 mt-2' src={recipe.thumbnail}></img>
-                   
-                <div className='ml-2' style={{ textAlign: "center" }}><p><strong>Ingredientes</strong></p></div>
-                <Modal.Body>
+                <div className='ml-2 mr-2 p-2 mb-2 bg-primary text-white' style={{ textAlign: "center"}}><p><strong>Ingredientes</strong></p></div>
+                <table >
+                
+                    <tr>
+                    <td style={{ width: "50%"}}>
+                    
                 <table className="table">
                           <tbody> 
                     {
@@ -186,24 +189,27 @@ const CardRecipe = ( props ) => {
                         recipe.ingredients.map((it, index) => {
                             return (
                             <>
-                            
-                            <tr key={index}>
-                            <th scope="row">*</th>
-                            <td>{it}</td>
-                            </tr>
+                            <div key={index}>
+                            <div  style={{ textAlign: "center" }}>{it}</div>
+                            </div>
                            
                             </>
                         )})
                     )
                     :
                     (
-                        <div></div>
+                        <div>no recipes</div>
                     )}
                      </tbody>
-                            </table>
-                </Modal.Body>
-
-                <div className='ml-2' style={{ textAlign: "center" }}><p><strong>Pasos a seguir!</strong></p></div>
+                </table>
+                    </td>
+                    <td style={{ width: "50%"}}>
+                        <img className='img-responsive ml-4 mr-4 mb-2 mt-2' style={{width: "80%"}} src={recipe.thumbnail}></img>
+                    </td>
+                    </tr>
+                </table>
+                        <hr></hr>
+                <div className='ml-2 p-2 mr-2 mb-2 bg-info text-white' style={{ textAlign: "center" }}><p><strong>Pasos a seguir!</strong></p></div>
                 <Modal.Body>
                 <table className="table">
                           <tbody> 
@@ -224,7 +230,7 @@ const CardRecipe = ( props ) => {
                     )
                     :
                     (
-                        <div></div>
+                        <div>no recipes</div>
                     )}
                      </tbody>
                      </table>
@@ -242,9 +248,17 @@ const CardRecipe = ( props ) => {
                             <>
                             
                             <tr key={index}>
-                            <th scope="row">{it.comment}</th>
-                            <td>{it.name}</td>
-                            <td>{it.created_at}</td>
+                            <td scope="row" style={{ textAlign: "center", width: '50%'}}>{it.comment}</td>
+                            <td style={{ textAlign: "center" ,width: '20%'}}>{it.name}</td>
+                            <td title={it.created_at} style={{ textAlign: "center",width: '30%' }}>
+                                {
+                                new Intl.DateTimeFormat('en-GB', { 
+                                    month: 'long', 
+                                    day: '2-digit',
+                                    year: 'numeric', 
+                                    hour: 'numeric', minute: 'numeric', second: 'numeric',
+                                }).format(new Date(it.created_at))}
+                            </td>
                             </tr>
                            
                             </>
@@ -259,11 +273,10 @@ const CardRecipe = ( props ) => {
                 </Table>
 
                 <Modal.Footer>
-                    <button type="button" className="btn btn-secondary" onClick={handleClose}>Close</button>
+                    <button type="button" className="btn btn-secondary" onClick={handleClose}>Cerrar</button>
                 </Modal.Footer>
             </Modal>
         </>
-
     )
 }
 

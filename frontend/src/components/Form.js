@@ -103,6 +103,7 @@ const Formulario = () => {
       >
         {({ errors }) => (
           <div className="container">
+             <h1 className="display-4" style={{ textAlign: "center" }}>Registrate!</h1>
             <div className="col-12" style={{ paddingBottom: "50px" }}>
               <Form className="formulario">
               <div>

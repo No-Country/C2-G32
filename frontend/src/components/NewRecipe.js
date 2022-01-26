@@ -96,11 +96,13 @@ const NewRecipe = () => {
     <>
     <Navbar/>
       <Formik>
+     
           <div className="container">
+          <h1 className="display-4" style={{ textAlign: "center" }}>Nueva receta!</h1>
             <div className="col-12" style={{ paddingBottom: "50px" }}>
           <Form className="formulario">
             <div>
-              <label htmlFor="nombre">Nombre Receta</label>
+              <label htmlFor="nombre">Nombre</label>
               <Field
                 type="text"
                 id="recipe_name"
@@ -112,7 +114,7 @@ const NewRecipe = () => {
               />
             </div>
             <div>
-              <label htmlFor="apellido">Tipo de reseta</label>
+              <label htmlFor="apellido">Tipo</label>
               <Field
                 type="text"
                 id="recipe_type"
@@ -124,7 +126,7 @@ const NewRecipe = () => {
               />
             </div>
             <div>
-              <label htmlFor="username">Thumbnail</label>
+              <label htmlFor="username">Imagen</label>
               <Field
                 type="text"
                 id="thumbnail"
@@ -137,7 +139,7 @@ const NewRecipe = () => {
             </div>
             
             <div >
-                <label>Ingredientes</label>
+                <label>Agrega ingredientes!</label>
                 <div className="input-group">
                     <Field
                       type="text"
@@ -207,7 +209,7 @@ const NewRecipe = () => {
 
 
             <div>
-              <label htmlFor="correo">USER ID</label>
+              <label htmlFor="correo">Tu #ID!</label>
               <Field
                 type="text"
                 name="user_id"

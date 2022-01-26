@@ -31,24 +31,26 @@ const RankRecipe = ( props ) => {
 
     return (
         <>
+        <h1 className="display-4" style={{ textAlign: "center" }}>TOP 10 RECETAS</h1>
+        <hr></hr>
             <Container>
             <table className="table table-striped table-light">
             <thead>
               <tr>
-                <th scope="col">#</th>
-                <th scope="col">Receta</th>
-                <th scope="col">Tipo</th>
-                <th scope="col">Likes</th>
+                <th scope="col">🏆</th>
+                <th scope="col" style={{ textAlign: "center" }}>Nombre</th>
+                <th scope="col" style={{ textAlign: "center" }}>Tipo</th>
+                <th scope="col" style={{ textAlign: "center" }}>Likes</th>
               </tr>
             </thead>
             <tbody>
                 {recipes.map((it, index) => {
                     return (
                       <tr key={index}>
-                      <th scope="row">{index+1}</th>
-                      <td>{it.recipe_name}</td>
-                      <td>{it.recipe_type}</td>
-                      <td>{it.likes}</td>
+                      <th className="display-6" scope="row">{index+1}</th>
+                      <td className="display-6" style={{ textAlign: "center" }}>{it.recipe_name}</td>
+                      <td className="display-6"style={{ textAlign: "center" }}>{it.recipe_type}</td>
+                      <td className="display-6"style={{ textAlign: "center" }}>{it.likes}</td>
                       </tr>
                 ); })
                 }
@@ -56,8 +58,8 @@ const RankRecipe = ( props ) => {
             </table>
             </Container> 
 
-            <div class="container" >
-              <div style={{ textAlign: "center" }}><b>Para ver las mas votadas, suscribite!</b></div></div>
+            <div className="container" >
+              <div style={{ textAlign: "center" }}><b>Para ver las las instrucciones, suscribite!</b></div></div>
         </>
 
     )
