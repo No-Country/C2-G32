@@ -143,7 +143,7 @@ const CardRecipe = ( props ) => {
                                 
                                     <Card.Title className="p-3 mt-2 bg-warning text-dark" style={{ textAlign: "center"}}><h4>{it.recipe_name}</h4></Card.Title>
                                     
-                                    <Button onClick={handleShow} className="mb-1"variant="info" size="sm" active id={it.id}>
+                                    <Button onClick={handleShow} className="mb-1 "variant="info" size="sm" active id={it.id}>
                                     Ver Receta
                                     </Button>{''}
                                     <Button className="mb-1"variant="light" size="sm" active id={it.id}

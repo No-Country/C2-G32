@@ -6,6 +6,7 @@ import "./App.css";
 import Form from "./components/Form";
 import RankScreen from "./components/RankScreen";
 import NewRecipe from "./components/NewRecipe";
+import About from "./components/About";
 
 
 function App() {
@@ -19,6 +20,7 @@ function App() {
           <Route  path="/Carnes" element={<RecipeScreen type="carnes"/>} />
           <Route  path="/Gourmet" element={<RecipeScreen type="gourmet"/>} />
           <Route  path="/Rank" element={<RankScreen type="rank"/>} />
+          <Route path="/about" element={<About/>} />
           <Route path="/home" element={<Home/>} />
           <Route path="/" element={<Home/>} />
           <Route path="/addrecipe" element={<NewRecipe/>}/>

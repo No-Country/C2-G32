@@ -13,14 +13,14 @@ const NavbarComponent = () => {
             src={Logo}
             width="30"
             height="30"
-            className="d-inline-block align-top "
+            className="d-inline-block align-top"
           />{' '}
             Recetas faciles!
           </Navbar.Brand>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="me-auto">
-              <Nav.Link href="/home">
+              <Nav.Link href="/home" className="ml-5">
                 Home
               </Nav.Link>
               <NavDropdown title="Recetas" id="basic-nav-dropdown">
@@ -39,6 +39,9 @@ const NavbarComponent = () => {
               </NavDropdown>
               <Nav.Link href="/Rank">Recetas mas votadas</Nav.Link>
 
+              <Nav.Link href="/about">
+                Contacto
+              </Nav.Link>
               
 
             </Nav>
