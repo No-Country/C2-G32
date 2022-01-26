@@ -1,13 +1,13 @@
 
-#RECETAS FACILES
+# RECETAS FACILES
 
 ## Introduction
 Sitio web que permite clasificar por distintas categorías distintas comidas. Se podrá publicar, comentar y votar!
 
 ## Table of contents
-* [Stack](#requeriments)
-* [Roles](#run)
-* [Link del deploy](#contributing)
+* [Stack](#Stack)
+* [Roles](#Roles)
+* [Link del deploy](#Link)
 
 ## Stack
 ```sh
@@ -27,6 +27,6 @@ Robert Linares
 Erika Belen Sandoval
 Julian Perna
 ```
-## Link del deploy
+## Link
 https://recetas-faciles.herokuapp.com/
 
